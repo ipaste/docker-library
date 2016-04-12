@@ -6,9 +6,9 @@ MAINTAINER ChasonTang <chasontang@gmail.com>
 #     && mv CentOS-Base.repo backup/ \
 #     && curl "http://mirrors.aliyun.com/repo/Centos-6.repo" -o CentOS-Base.repo \
 #     && curl "http://mirrors.aliyun.com/repo/epel-6.repo" -o epel.repo
-RUN yum -y update
-RUN yum -y groupinstall "Development Tools"
-RUN yum -y install pcre-devel jemalloc-devel openssl-devel
+RUN yum -y update; yum clean all
+RUN yum -y groupinstall "Development Tools"; yum clean all
+RUN yum -y install pcre-devel jemalloc-devel openssl-devel; yum clean all
 ENV TENGINE_VERSION 2.1.2
 RUN curl "http://tengine.taobao.org/download/tengine-$TENGINE_VERSION.tar.gz" -o tengine.tar.gz \
     && mkdir /usr/src/nginx \
