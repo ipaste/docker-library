@@ -3,7 +3,7 @@ MAINTAINER ChasonTang <chasontang@gmail.com
 
 RUN yum -y update; yum clean all
 RUN yum -y groupinstall "Development Tools"; yum clean all
-RUN yum -y install openssl-devel libxml2-devel bzip2-devel curl-devel libjpeg-turbo-devel libpng-devel readline-devel 
+RUN yum -y install openssl-devel libxml2-devel bzip2-devel curl-devel libjpeg-turbo-devel libpng-devel readline-devel; yum clean all
 ENV PHP_VERSION 7.0.5
 RUN curl -fSL "http://php.net/get/php-$PHP_VERSION.tar.xz/from/this/mirror" -o php.tar.xz \
     && mkdir /usr/src/php \
