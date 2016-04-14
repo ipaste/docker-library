@@ -1,5 +1,5 @@
 FROM centos:6
-MAINTAINER ChasonTang <chasontang@gmail.com
+MAINTAINER ChasonTang <chasontang@gmail.com>
 
 RUN yum -y update; yum clean all
 RUN yum -y groupinstall "Development Tools"; yum clean all
