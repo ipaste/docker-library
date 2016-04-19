@@ -37,6 +37,8 @@ ENV CONFIG "\
         --with-jemalloc \
         "
 
+ADD ngx_user.patch /
+
 RUN \
     addgroup -S nginx \
     && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -54,7 +56,12 @@ RUN \
     && mkdir -p /usr/src \
     && tar -zxC /usr/src -f tengine.tar.gz \
     && rm tengine.tar.gz \
-    && cd /usr/src/tengine-$TENGINE_VERSION \
+    && cd /usr/src/tengine-$TENGINE_VERSION/src/os/unix/ \
+    && mv /ngx_user.patch ./ngx_user.patch \
+    && patch ngx_user.c ngx_user.patch \
+    && rm ngx_user.patch \
+    && cd ../../../ \
+#    && cd /usr/src/tengine-$TENGINE_VERSION \
     && ./configure $CONFIG --with-debug \
     && make \
     && mv objs/nginx objs/nginx-debug \
