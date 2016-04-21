@@ -38,6 +38,7 @@ ENV CONFIG "\
         "
 
 ADD ngx_user.patch /
+ADD repositories /etc/apk/repositories
 
 RUN \
     addgroup -S nginx \
