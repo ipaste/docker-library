@@ -85,7 +85,7 @@ RUN \
     )" \
     && apk add --virtual .nginx-rundeps $runDeps \
     && apk del .build-deps \
-    && rm -rf /usr/src/nginx-$NGINX_VERSION \
+    && rm -rf /usr/src/nginx-$TENGINE_VERSION \
     && apk add --no-cache gettext \
     \
     # forward request and error logs to docker log collector
