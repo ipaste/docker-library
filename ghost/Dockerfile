@@ -1,8 +1,6 @@
 FROM node:4.4.3
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
-RUN groupadd ghost && useradd -g ghost -r -s /sbin/nologin ghost
-
 ENV GHOST_VERSION 0.7.9
 ENV GHOST_SOURCE /usr/src/ghost
 ENV NODE_ENV production
@@ -14,6 +12,7 @@ RUN buildDeps=' \
     ' \
     && set -x \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
+    && groupadd ghost && useradd -g ghost -r -s /sbin/nologin ghost \
     && mkdir -p "$GHOST_SOURCE" \
     && cd "$GHOST_SOURCE" \
     && curl -LO "https://ghost.org/zip/ghost-$GHOST_VERSION.zip" \
