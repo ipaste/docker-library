@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
-ENV TENGINE_VERSION 2.1.2
+ENV TENGINE_VERSION 2.1.2_f
 ENV CONFIG "\
         --prefix=/etc/nginx \
         --sbin-path=/usr/sbin/nginx \
@@ -52,7 +52,7 @@ RUN \
         linux-headers \
         curl \
         jemalloc-dev \
-    && curl "http://tengine.taobao.org/download/tengine-$TENGINE_VERSION.tar.gz" -o tengine.tar.gz \
+    && curl "https://github.com/alibaba/tengine/archive/tengine-$TENGINE_VERSION.tar.gz" -o tengine.tar.gz \
     && mkdir -p /usr/src \
     && tar -zxC /usr/src -f tengine.tar.gz \
     && rm tengine.tar.gz \
