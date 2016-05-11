@@ -52,7 +52,7 @@ RUN \
         linux-headers \
         curl \
         jemalloc-dev \
-    && curl "https://github.com/alibaba/tengine/archive/tengine-$TENGINE_VERSION.tar.gz" -o tengine.tar.gz \
+    && curl -L "https://github.com/alibaba/tengine/archive/tengine-$TENGINE_VERSION.tar.gz" -o tengine.tar.gz \
     && mkdir -p /usr/src \
     && tar -zxC /usr/src -f tengine.tar.gz \
     && rm tengine.tar.gz \
@@ -85,8 +85,6 @@ RUN \
     && apk add --virtual .nginx-rundeps $runDeps \
     && apk del .build-deps \
     && rm -rf /usr/src/nginx-$TENGINE_VERSION \
-    && apk add --no-cache gettext \
-    \
     # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
