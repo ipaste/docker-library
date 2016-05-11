@@ -3,8 +3,6 @@ MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV SHADOWSOCKS_VERSION 2.4.6
 
-ADD repositories /etc/apk/repositories
-
 RUN apk add --no-cache --virtual .build-deps \
         gcc \
         libc-dev \
