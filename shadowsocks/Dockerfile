@@ -11,6 +11,7 @@ RUN apk add --no-cache --virtual .build-deps \
         zlib-dev \
         linux-headers \
         curl \
+    && mkdir -p /usr/src \
     && cd /usr/src \
     && curl -LO "https://github.com/shadowsocks/shadowsocks-libev/archive/v$SHADOWSOCKS_VERSION.tar.gz" \
     && tar zxf v$SHADOWSOCKS_VERSION.tar.gz \
