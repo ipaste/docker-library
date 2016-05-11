@@ -11,4 +11,7 @@ RUN mkdir -p "$CATALINA_HOME"
 WORKDIR $CATALINA_HOME
 
 RUN apk add --no-cache curl \
-    && 
+    && curl -fSL "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \
+    && tar -xvf tomcat.tar.gz --strip-components=1 \
+    && rm tomcat.tar.gz \
+    
