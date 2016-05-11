@@ -30,7 +30,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del .build-deps \
     && cd .. \
     && rm -rf v$SHADOWSOCKS_VERSION \
-    && rm v$SHADOWSOCKS_VERSION
+    && rm v$SHADOWSOCKS_VERSION.tar.gz
 
 EXPOSE 8388
 ENTRYPOINT ["/usr/local/bin/ss-server"]
