@@ -56,7 +56,7 @@ RUN \
     && mkdir -p /usr/src \
     && tar -zxC /usr/src -f tengine.tar.gz \
     && rm tengine.tar.gz \
-    && cd /usr/src/tengine-$TENGINE_VERSION/src/os/unix/ \
+    && cd /usr/src/tengine-tengine-$TENGINE_VERSION/src/os/unix/ \
     && mv /ngx_user.patch ./ngx_user.patch \
     && patch ngx_user.c ngx_user.patch \
     && rm ngx_user.patch \
@@ -84,7 +84,7 @@ RUN \
     )" \
     && apk add --virtual .nginx-rundeps $runDeps \
     && apk del .build-deps \
-    && rm -rf /usr/src/nginx-$TENGINE_VERSION \
+    && rm -rf /usr/src/tengine-tengine-$TENGINE_VERSION \
     # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
