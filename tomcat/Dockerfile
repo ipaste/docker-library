@@ -8,11 +8,11 @@ WORKDIR $CATALINA_HOME
 
 # runtime dependency for Tomcat Native Libraries
 RUN apk add --update --no-cache --virtual .run-deps \
-        apr
+        apr \
+        tar
 
 # build dependency
-RUN apk add --update --no-cache --virtual .build-deps \
-        tar \
+RUN apk add --no-cache --virtual .build-deps \
         curl \
         gnupg \
         gcc \
@@ -58,13 +58,6 @@ RUN set -x \
     && ( \
         export CATALINA_HOME="$PWD" \
         && cd "$nativeBuildDir/native" \
-        && [ "$(openssl version | cut -d' ' -f2)" = '1.0.1k' ] \
-# http://tomcat.10.x6.nabble.com/VOTE-Release-Apache-Tomcat-8-0-32-tp5046007p5048274.html (ie, HACK HACK HACK)
-        && cp src/sslcontext.c src/sslcontext.c.orig \
-        && awk ' \
-                /^    eckey = EC_KEY_new_by_curve_name/ { print "    EC_KEY *eckey = NULL;" } \
-                { print } \
-                ' src/sslcontext.c.orig > src/sslcontext.c \
         && ./configure \
             --libdir=/usr/lib/jni \
             --prefix="$CATALINA_HOME" \
