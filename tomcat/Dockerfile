@@ -14,7 +14,7 @@ RUN apk add --update --no-cache --virtual .run-deps \
 RUN apk add --update --no-cache --virtual .build-deps \
         tar \
         curl \
-        gnugpg \
+        gnupg \
         gcc \
         apr-dev \
         openssl-dev \
