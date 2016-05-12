@@ -20,7 +20,8 @@ RUN apk add --no-cache --virtual .build-deps \
         openssl-dev \
         make \
         libc-dev \
-        linux-headers
+        linux-headers \
+        openjdk8="$JAVA_ALPINE_VERSION"
 
 # see https://www.apache.org/dist/tomcat/tomcat-8/KEYS
 RUN set -ex \
