@@ -1,4 +1,4 @@
-FROM java:openjdk-8u92-jre-alpine
+FROM java:openjdk-8u92-jdk-alpine
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV CATALINA_HOME /usr/local/tomcat
@@ -20,8 +20,7 @@ RUN apk add --no-cache --virtual .build-deps \
         openssl-dev \
         make \
         libc-dev \
-        linux-headers \
-        openjdk8="$JAVA_ALPINE_VERSION"
+        linux-headers
 
 # see https://www.apache.org/dist/tomcat/tomcat-8/KEYS
 RUN set -ex \
@@ -63,7 +62,7 @@ RUN set -x \
             --libdir=/usr/lib/jni \
             --prefix="$CATALINA_HOME" \
             --with-apr=/usr/bin/apr-1-config \
-            --with-java-home=/usr/lib/jvm/java-1.8-openjdk \
+            --with-java-home="$(docker-java-home)" \
             --with-ssl=yes \
         && make -j$(nproc) \
         && make install \
