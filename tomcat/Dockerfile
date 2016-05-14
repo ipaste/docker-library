@@ -63,7 +63,7 @@ RUN set -x \
             --libdir=/usr/lib/jni \
             --prefix="$CATALINA_HOME" \
             --with-apr=/usr/bin/apr-1-config \
-            --with-java-home="$(docker-java-home)" \
+            --with-java-home=/usr/lib/jvm/java-1.8-openjdk \
             --with-ssl=yes \
         && make -j$(nproc) \
         && make install \
