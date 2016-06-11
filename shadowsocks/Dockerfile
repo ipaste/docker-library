@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV SHADOWSOCKS_VERSION 2.4.6
