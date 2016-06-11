@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV TENGINE_VERSION 2.1.2_f
