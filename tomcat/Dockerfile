@@ -1,4 +1,4 @@
-FROM java:openjdk-8u92-jdk-alpine
+FROM java:openjdk-8u92-jre-alpine
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV CATALINA_HOME /usr/local/tomcat
@@ -42,7 +42,7 @@ RUN set -ex \
     done
 
 ENV TOMCAT_MAJOR 8
-ENV TOMCAT_VERSION 8.0.33
+ENV TOMCAT_VERSION 8.0.36
 ENV TOMCAT_TGZ_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 RUN set -x \
