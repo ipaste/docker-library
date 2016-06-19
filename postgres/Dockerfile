@@ -6,22 +6,19 @@ ENV LANG en_US.utf8
 ENV PG_MAJOR 9.5
 ENV PG_VERSION 9.5.3-r1
 
-RUN addgroup -S postgres \
-    && adduser -G postgres -S -H -u 999 postgres \
-    && apk add --no-cache curl \
+RUN apk add --no-cache curl \
     && curl -o /usr/local/bin/gosu -fsSL "https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64" \
     && chmod +x /usr/local/bin/gosu \
-    && gosu nobody true \
     && apk del curl \
     && mkdir /docker-entrypoint-initdb.d \
     && apk add --no-cache postgresql=PG_VERSION \
-    && mkdir -p /var/run/postgresql \
-    && chown -R postgres:postgres /var/run/postgresql
+    && mkdir /docker-entrypoint-initdb.d
 
 ENV PGDATA /var/lib/postgresql/data
 VOLUME /var/lib/postgresql/data
 
 COPY docker-entrypoint.sh /
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 5432
