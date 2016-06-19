@@ -71,17 +71,22 @@ RUN \
     && ./configure $CONFIG --with-debug \
     && make \
     && mv objs/nginx objs/nginx-debug \
-    && mv objs/ngx_http_geoip_module.so objs/ngx_http_geoip_module-debug.so \
-    && mv objs/ngx_http_image_filter_module.so objs/ngx_http_image_filter_module-debug.so \
-    && mv objs/ngx_http_slice_module.so objs/ngx_http_slice_module-debug.so \
-    && mv objs/ngx_http_sub_filter_module.so objs/ngx_http_sub_filter_module-debug.so \
-    && mv objs/ngx_http_sysguard_module.so objs/ngx_http_sysguard_module-debug.so \
-    && mv objs/ngx_http_xslt_filter_module.so objs/ngx_http_xslt_filter_module-debug.so \
+    && mv objs/modules/ngx_http_geoip_module.so objs/modules/ngx_http_geoip_module-debug.so \
+    && mv objs/modules/ngx_http_image_filter_module.so objs/modules/ngx_http_image_filter_module-debug.so \
+    && mv objs/modules/ngx_http_slice_module.so objs/modules/ngx_http_slice_module-debug.so \
+    && mv objs/modules/ngx_http_sub_filter_module.so objs/modules/ngx_http_sub_filter_module-debug.so \
+    && mv objs/modules/ngx_http_sysguard_module.so objs/modules/ngx_http_sysguard_module-debug.so \
+    && mv objs/modules/ngx_http_xslt_filter_module.so objs/modules/ngx_http_xslt_filter_module-debug.so \
     && ./configure $CONFIG \
     && make \
     && make install \
     && install -m755 objs/nginx-debug /usr/sbin/nginx-debug \
-    && install -m755 objs/modules /usr/local/nginx/modules \
+    && install -m755 objs/modules/ngx_http_geoip_module-debug.so /usr/local/nginx/modules/ngx_http_geoip_module-debug.so \
+    && install -m755 objs/modules/ngx_http_image_filter_module-debug.so /usr/local/nginx/modules/ngx_http_image_filter_module-debug.so \
+    && install -m755 objs/modules/ngx_http_slice_module-debug.so /usr/local/nginx/modules/ngx_http_slice_module-debug.so \
+    && install -m755 objs/modules/ngx_http_sub_filter_module-debug.so /usr/local/nginx/modules/ngx_http_sub_filter_module-debug.so \
+    && install -m755 objs/modules/ngx_http_sysguard_module-debug.so /usr/local/nginx/modules/ngx_http_sysguard_module-debug.so \
+    && install -m755 objs/modules/ngx_http_xslt_filter_module-debug.so /usr/local/nginx/modules/ngx_http_xslt_filter_module-debug.so \
     && strip /usr/sbin/nginx* \
     && strip /usr/local/nginx/modules/*.so \
     && runDeps="$( \
