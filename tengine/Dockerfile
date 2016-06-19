@@ -81,12 +81,7 @@ RUN \
     && make \
     && make install \
     && install -m755 objs/nginx-debug /usr/sbin/nginx-debug \
-    && install -m755 objs/ngx_http_geoip_module-debug.so /usr/local/nginx/modules/ngx_http_geoip_module-debug.so \
-    && install -m755 objs/ngx_http_image_filter_module-debug.so /usr/local/nginx/modules/ngx_http_image_filter_module-debug.so \
-    && install -m755 objs/ngx_http_slice_module-debug.so /usr/local/nginx/modules/ngx_http_slice_module-debug.so \
-    && install -m755 objs/ngx_http_sub_filter_module-debug.so /usr/local/nginx/modules/ngx_http_sub_filter_module-debug.so \
-    && install -m755 objs/ngx_http_sysguard_module-debug.so /usr/local/nginx/modules/ngx_http_sysguard_module-debug.so \
-    && install -m755 objs/ngx_http_xslt_filter_module-debug.so /usr/local/nginx/modules/ngx_http_xslt_filter_module-debug.so \
+    && install -m755 objs/modules /usr/local/nginx/modules \
     && strip /usr/sbin/nginx* \
     && strip /usr/local/nginx/modules/*.so \
     && runDeps="$( \
