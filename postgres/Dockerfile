@@ -12,7 +12,6 @@ RUN apk add --no-cache curl \
     && apk del curl \
     && mkdir /docker-entrypoint-initdb.d \
     && apk add --no-cache postgresql=$PG_VERSION \
-    && mkdir /docker-entrypoint-initdb.d
 
 ENV PGDATA /var/lib/postgresql/data
 VOLUME /var/lib/postgresql/data
