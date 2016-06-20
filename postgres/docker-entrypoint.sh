@@ -53,7 +53,7 @@ EOWARN
         : ${POSTGRES_DB:=$POSTGRES_USER}
         export POSTGRES_USER POSTGRES_DB
 
-        psql=( psql -v ON_ERROR_STOP=1 )
+        alias psql='psql -v ON_ERROR_STOP=1'
 
         if [ "$POSTGRES_DB" != 'postgres' ]; then
             "${psql[@]}" --username postgres <<-EOSQL
@@ -72,7 +72,7 @@ EOSQL
 EOSQL
         echo
 
-        psql+=( --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" )
+        alias psql='psql -v ON_ERROR_STOP=1 --username $POSTGRES_USER --dbname $POSTGRES_DB'
 
         echo
         for f in /docker-entrypoint-initdb.d/*; do
