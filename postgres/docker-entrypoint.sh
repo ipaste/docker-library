@@ -35,7 +35,7 @@ if [ "$1" = 'postgres' ]; then
                          Use "-e POSTGRES_PASSWORD=password" to set
                          it in "docker run".
                 ****************************************************
-            EOWARN
+EOWARN
 
             pass=
             authMethod=trust
@@ -58,7 +58,7 @@ if [ "$1" = 'postgres' ]; then
         if [ "$POSTGRES_DB" != 'postgres' ]; then
             "${psql[@]}" --username postgres <<-EOSQL
                 CREATE DATABASE "$POSTGRES_DB" ;
-            EOSQL
+EOSQL
             echo
         fi
 
@@ -69,7 +69,7 @@ if [ "$1" = 'postgres' ]; then
         fi
         "${psql[@]}" --username postgres <<-EOSQL
             $op USER "$POSTGRES_USER" WITH SUPERUSER $pass ;
-        EOSQL
+EOSQL
         echo
 
         psql+=( --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" )
