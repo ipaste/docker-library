@@ -10,9 +10,6 @@ if [ "$1" = 'postgres' ]; then
     chmod 700 "$PGDATA"
     chown -R postgres "$PGDATA"
 
-    chmod g+s /run/postgresql
-    chown -R postgres /run/postgresql
-
     # look specifically for PG_VERSION, as it is expected in the DB dir
     if [ ! -s "$PGDATA/PG_VERSION" ]; then
         eval "gosu postgres initdb $POSTGRES_INITDB_ARGS"
