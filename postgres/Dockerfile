@@ -11,7 +11,8 @@ RUN apk add --no-cache curl \
     && chmod +x /usr/local/bin/gosu \
     && apk del curl \
     && mkdir /docker-entrypoint-initdb.d \
-    && apk add --no-cache postgresql=$PG_VERSION
+    && apk add --no-cache postgresql=$PG_VERSION \
+    && sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/share/postgresql/postgresql.conf.sample
 
 ENV PGDATA /var/lib/postgresql/data
 VOLUME /var/lib/postgresql/data
