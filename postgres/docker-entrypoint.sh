@@ -56,7 +56,7 @@ EOWARN
         alias psql='psql -v ON_ERROR_STOP=1'
 
         if [ "$POSTGRES_DB" != 'postgres' ]; then
-            "${psql[@]}" --username postgres <<-EOSQL
+            psql --username postgres <<-EOSQL
                 CREATE DATABASE "$POSTGRES_DB" ;
 EOSQL
             echo
@@ -67,7 +67,7 @@ EOSQL
         else
             op='CREATE'
         fi
-        "${psql[@]}" --username postgres <<-EOSQL
+        psql --username postgres <<-EOSQL
             $op USER "$POSTGRES_USER" WITH SUPERUSER $pass ;
 EOSQL
         echo
@@ -78,8 +78,8 @@ EOSQL
         for f in /docker-entrypoint-initdb.d/*; do
             case "$f" in
                 *.sh)     echo "$0: running $f"; . "$f" ;;
-                *.sql)    echo "$0: running $f"; "${psql[@]}" < "$f"; echo ;;
-                *.sql.gz) echo "$0: running $f"; gunzip -c "$f" | "${psql[@]}"; echo ;;
+                *.sql)    echo "$0: running $f"; psql < "$f"; echo ;;
+                *.sql.gz) echo "$0: running $f"; gunzip -c "$f" | psql; echo ;;
                 *)        echo "$0: ignoring $f" ;;
             esac
             echo
