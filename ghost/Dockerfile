@@ -13,12 +13,11 @@ RUN mkdir -p $GHOST_SOURCE \
     && cd $GHOST_SOURCE \
     && curl -o ghost.zip "https://ghost.org/archives/ghost-$GHOST_VERSION.zip" \
     && unzip ghost.zip \
-    && mkdir -p $GHOST_CONTENT \
     && npm install --production \
     && rm ghost.zip \
     && npm cache clean \
     && rm -rf /tmp/npm* \
-    && chown -R ghost:ghost $GHOST_CONTENT \
+    && chown -R ghost:ghost $GHOST_CONTENT
 
 VOLUME $GHOST_CONTENT
 
