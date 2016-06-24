@@ -20,6 +20,7 @@ RUN mkdir -p $GHOST_SOURCE \
     && chown -R ghost:ghost $GHOST_CONTENT
 
 VOLUME $GHOST_CONTENT
+WORKDIR $GHOST_SOURCE
 
 EXPOSE 2368
 CMD ["npm", "start"]
