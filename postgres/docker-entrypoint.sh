@@ -87,7 +87,7 @@ EOSQL
         echo
     fi
 
-    exec su -c "postgres "$@"" postgres
+    exec su -c "$@" postgres
 fi
 
 exec "$@"
