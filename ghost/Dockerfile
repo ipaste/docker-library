@@ -3,11 +3,12 @@ MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV GHOST_VERSION 0.8.0
 ENV GHOST_SOURCE /usr/src/ghost
-ENV GHOST_CONTENT /usr/src/ghost/content
+ENV GHOST_CONTENT /var/lib/ghost
 ENV NODE_ENV production
 
-RUN mkdir -p $GHOST_SOURCE \
-    && addgroup -S ghost \
+WORKDIR $GHOST_SOURCE
+
+RUN addgroup -S ghost \
     && adduser -h $GHOST_SOURCE -S -G ghost ghost \
     && apk add --no-cache curl \
     && cd $GHOST_SOURCE \
@@ -17,10 +18,13 @@ RUN mkdir -p $GHOST_SOURCE \
     && rm ghost.zip \
     && npm cache clean \
     && rm -rf /tmp/npm* \
-    && chown -R ghost:ghost $GHOST_CONTENT
+    && mkdir -p "$GHOST_CONTENT" \
+    && chown -R ghost:ghost "$GHOST_CONTENT"
 
 VOLUME $GHOST_CONTENT
-WORKDIR $GHOST_SOURCE
+
+COPY docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 2368
 CMD ["npm", "start"]
