@@ -2,6 +2,7 @@
 set -e
 
 if [[ "$*" == npm*start* ]]; then
+    echo "hello world"
     baseDir="$GHOST_SOURCE/content"
     for dir in "$baseDir"/*/ "$baseDir"/themes/*/; do
         targetDir="$GHOST_CONTENT/${dir#$baseDir/}"
