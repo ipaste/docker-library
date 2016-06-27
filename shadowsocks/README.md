@@ -1,5 +1,5 @@
 # Docker-Shadowsocks
-This Dockerfile builds an image with shadowsocks-libev.Based on alpine:3.3
+This Dockerfile builds an image with shadowsocks-libev.Based on alpine:3.4
 # Quick Start
 This image uses ENTRYPOINT to run the containers as an executable.
 ```
