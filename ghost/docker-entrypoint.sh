@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+echo "hello world"
+
 if [[ "$*" == npm*start* ]]; then
     baseDir="$GHOST_SOURCE/content"
     for dir in "$baseDir"/*/ "$baseDir"/themes/*/; do

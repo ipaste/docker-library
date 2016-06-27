@@ -13,6 +13,7 @@ RUN addgroup -S ghost \
     && apk add --no-cache curl \
     && cd $GHOST_SOURCE \
     && curl -o ghost.zip "https://ghost.org/archives/ghost-$GHOST_VERSION.zip" \
+    && apk del curl \
     && unzip ghost.zip \
     && npm install --production \
     && rm ghost.zip \
