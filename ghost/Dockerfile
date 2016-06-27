@@ -9,8 +9,8 @@ ENV NODE_ENV production
 WORKDIR $GHOST_SOURCE
 
 RUN addgroup -S ghost \
-    && adduser -h $GHOST_SOURCE -S -G ghost ghost \
-    && apk add --no-cache curl \
+    && adduser -h $GHOST_SOURCE -S -G ghost -s /bin/sh ghost \
+    && apk add --no-cache curl tar \
     && cd $GHOST_SOURCE \
     && curl -o ghost.zip "https://ghost.org/archives/ghost-$GHOST_VERSION.zip" \
     && apk del curl \
@@ -25,7 +25,7 @@ RUN addgroup -S ghost \
 VOLUME $GHOST_CONTENT
 
 COPY docker-entrypoint.sh /entrypoint.sh
-# ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 2368
-# CMD ["npm", "start"]
+CMD ["npm", "start"]

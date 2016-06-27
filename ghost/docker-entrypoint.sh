@@ -1,8 +1,7 @@
 #!/bin/sh
 set -e
 
-if [[ "$*" == npm*start* ]]; then
-    echo "hello world"
+if [[ "$*" == "npm start" ]]; then
     baseDir="$GHOST_SOURCE/content"
     for dir in "$baseDir"/*/ "$baseDir"/themes/*/; do
         targetDir="$GHOST_CONTENT/${dir#$baseDir/}"
@@ -23,7 +22,7 @@ if [[ "$*" == npm*start* ]]; then
 
     chown -R ghost:ghost "$GHOST_CONTENT"
 
-    set -- su -c "$@" ghost
+    su -c '$@' ghost
 fi
 
 exec "$@"
