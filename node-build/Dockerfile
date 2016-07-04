@@ -1,4 +1,4 @@
-FROM node:0.0.0
+FROM chasontang/node:4.4.4
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 RUN mkdir -p /usr/src/app
