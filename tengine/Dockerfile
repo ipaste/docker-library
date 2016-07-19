@@ -61,10 +61,10 @@ RUN \
     && ./configure $CONFIG \
     && make \
     && make install \
-    && install -m755 objs/nginx-debug /usr/sbin/nginx-debug \
-    && strip /usr/sbin/nginx* \
+    && install -m755 objs/nginx-debug /usr/local/nginx/sbin/nginx-debug \
+    && strip /usr/local/nginx/sbin/nginx* \
     && runDeps="$( \
-        scanelf --needed --nobanner /usr/sbin/nginx \
+        scanelf --needed --nobanner /usr/local/nginx/sbin/nginx \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
             | sort -u \
             | xargs -r apk info --installed \
