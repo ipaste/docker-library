@@ -1,7 +1,8 @@
 FROM alpine:3.4
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
-ENV PG_MAJOR 9.5
+ENV LANG en_US.utf8
+
 ENV PG_VERSION 9.5.3-r1
 
 RUN mkdir /docker-entrypoint-initdb.d \

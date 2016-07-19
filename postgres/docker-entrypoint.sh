@@ -42,7 +42,7 @@ EOWARN
 
         # internal start of server in order to allow set-up using psql-client        
         # does not listen on external TCP/IP and waits until start finishes
-        su -c 'pg_ctl -D "$PGDATA" -o "-c listen_addresses='*'" -w start' postgres
+        su -c 'pg_ctl -D "$PGDATA" -o "-c listen_addresses='localhost'" -w start' postgres
 
         : ${POSTGRES_USER:=postgres}
         : ${POSTGRES_DB:=$POSTGRES_USER}
