@@ -5,7 +5,7 @@ MAINTAINER ChasonTang <chasontang@gmail.com>
 ENV PG_VERSION 9.5.3-r1
 
 RUN apk add --no-cache postgresql-dev=$PG_VERSION \
-    && docker-php-ext-install do_pgsql \
+    && docker-php-ext-install pdo_pgsql \
     && apk del --no-cache postgresql-dev=$PG_VERSION \
     && apk add --no-cache postgresql-libs=$PG_VERSION \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
