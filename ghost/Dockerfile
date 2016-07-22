@@ -1,4 +1,4 @@
-FROM chasontang/node:4.4.4
+FROM mhart/alpine-node-auto:4.4.7
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ENV GHOST_VERSION 0.8.0
