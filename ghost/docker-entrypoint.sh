@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if [[ "$*" == "npm start" ]]; then
+if [[ "$*" == "node index" ]]; then
     baseDir="$GHOST_SOURCE/content"
     for dir in "$baseDir"/*/ "$baseDir"/themes/*/; do
         targetDir="$GHOST_CONTENT/${dir#$baseDir/}"
