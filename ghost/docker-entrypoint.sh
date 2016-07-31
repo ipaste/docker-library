@@ -22,7 +22,7 @@ if [[ "$*" == "node index" ]]; then
 
     chown -R ghost:ghost "$GHOST_CONTENT"
 
-    exec "$@"
+    exec "gosu ghost "$@""
 fi
 
 exec "$@"
