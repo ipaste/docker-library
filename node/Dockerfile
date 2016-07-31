@@ -1,8 +1,7 @@
-FROM alpine:3.4
+FROM alpine:edge
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
-ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 4.4.4-r0
+ENV NODE_VERSION 4.4.7-r0
 
 RUN apk add --no-cache nodejs-lts=$NODE_VERSION
 
