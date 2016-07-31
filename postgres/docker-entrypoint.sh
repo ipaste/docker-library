@@ -6,13 +6,9 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 if [ "$1" = 'postgres' ]; then
-    mkdir -p "$PGDATA"
-    chmod 700 "$PGDATA"
-    chown -R postgres:postgres "$PGDATA"
-
     # look specifically for PG_VERSION, as it is expected in the DB dir
     if [ ! -s "$PGDATA/PG_VERSION" ]; then
-        eval "gosu postgres initdb $POSTGRES_INITDB_ARGS"
+        eval "postgres initdb $POSTGRES_INITDB_ARGS"
 
         # check password first so we can output the warning before postgres
         # messes it up
@@ -42,7 +38,7 @@ EOWARN
 
         # internal start of server in order to allow set-up using psql-client        
         # does not listen on external TCP/IP and waits until start finishes
-        gosu postgres pg_ctl -D "$PGDATA" \
+        postgres pg_ctl -D "$PGDATA" \
             -o "-c listen_addresses='localhost'" \
             -w start
 
@@ -82,14 +78,14 @@ EOSQL
             echo
         done
 
-        gosu postgres pg_ctl -D "$PGDATA" -m fast -w stop
+        postgres pg_ctl -D "$PGDATA" -m fast -w stop
 
         echo
         echo 'PostgreSQL init process complete; ready for start up.'
         echo
     fi
 
-    exec gosu postgres "$@"
+    exec postgres "$@"
 fi
 
 exec "$@"
