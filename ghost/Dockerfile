@@ -1,7 +1,7 @@
-FROM mhart/alpine-node-auto:4.4.7
+FROM chasontang/node:4.4.7
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
-ENV GHOST_VERSION 0.8.0
+ENV GHOST_VERSION 0.9.0
 ENV GHOST_SOURCE /usr/src/ghost
 ENV GHOST_CONTENT /var/lib/ghost
 ENV NODE_ENV production
@@ -23,6 +23,8 @@ RUN addgroup -S ghost \
     && chown -R ghost:ghost "$GHOST_CONTENT"
 
 VOLUME $GHOST_CONTENT
+
+USER ghost
 
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
