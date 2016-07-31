@@ -85,7 +85,7 @@ EOSQL
         echo
     fi
 
-    exec postgres "$@"
+    exec "$@"
 fi
 
 exec "$@"
