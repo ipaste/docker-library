@@ -1,2 +1,2 @@
-FROM gcr.io/google_containers/kubedns-amd64:1.5
+FROM gcr.io/google_containers/kubedns-amd64:1.7
 MAINTAINER ChasonTang <chasontang@gmail.com>
