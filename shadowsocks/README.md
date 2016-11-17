@@ -1,75 +1,88 @@
-# Docker-Shadowsocks
-This Dockerfile builds an image with shadowsocks-libev.Based on alpine:3.4
-# Quick Start
-This image uses ENTRYPOINT to run the containers as an executable.
+shadowsocks-libev
+=================
+
+[shadowsocks-libev][1] is a lightweight secured socks5 proxy for embedded
+devices and low end boxes.  It is a port of [shadowsocks][2] created by
+@clowwindy maintained by @madeye and @linusyang.
+
+Suppose we have a VPS running Debian or Ubuntu.
+To deploy the service quickly, we can use [docker][3].
+
+## Install docker
+
 ```
-docker run -d -p 8388:8388 <docker-shadowsocks-image> -s 0.0.0.0 -p 8388 -k $SSPASSWORD -m aes-256-cfb
+$ curl -sSL https://get.docker.com/ | sh
+$ docker --version
 ```
-You can configure the service to run on a port of your choice. Just make sure the port number given to Docker is the same as the one given to shadowsocks. Also, it is highly recommended that you store the shadowsocks password in an environment variable as shown above. This way the password will not show in plain text when you run docker ps.
-# Usage
-For a detailed and complete list of all supported arguments, you may refer to the man pages of the applications, respectively.
+
+## Build docker image
+
+```bash
+$ curl -sSL https://github.com/shadowsocks/shadowsocks-libev/raw/master/docker/alpine/Dockerfile | docker build -t shadowsocks-libev .
+$ docker images
 ```
-    ss-[local|redir|server|tunnel]
 
-       -s <server_host>           host name or ip address of your remote server
+> You can also use a pre-built docker image: [vimagick/shadowsocks-libev][4] ![][5].
 
-       -p <server_port>           port number of your remote server
+## Run docker container
 
-       -l <local_port>            port number of your local server
-
-       -k <password>              password of your remote server
-
-       [-m <encrypt_method>]      encrypt method: table, rc4, rc4-md5,
-                                  aes-128-cfb, aes-192-cfb, aes-256-cfb,
-                                  bf-cfb, camellia-128-cfb, camellia-192-cfb,
-                                  camellia-256-cfb, cast5-cfb, des-cfb, idea-cfb,
-                                  rc2-cfb, seed-cfb, salsa20 ,chacha20 and
-                                  chacha20-ietf
-
-       [-f <pid_file>]            the file path to store pid
-
-       [-t <timeout>]             socket timeout in seconds
-
-       [-c <config_file>]         the path to config file
-
-       [-i <interface>]           network interface to bind,
-                                  not available in redir mode
-
-       [-b <local_address>]       local address to bind,
-                                  not available in server mode
-
-       [-u]                       enable udprelay mode,
-                                  TPROXY is required in redir mode
-
-       [-U]                       enable UDP relay and disable TCP relay,
-                                  not available in local mode
-
-       [-A]                       enable onetime authentication
-
-       [-L <addr>:<port>]         specify destination server address and port
-                                  for local port forwarding,
-                                  only available in tunnel mode
-
-       [-d <addr>]                setup name servers for internal DNS resolver,
-                                  only available in server mode
-
-       [--fast-open]              enable TCP fast open,
-                                  only available in local and server mode,
-                                  with Linux kernel > 3.7.0
-
-       [--acl <acl_file>]         config file of ACL (Access Control List)
-                                  only available in local and server mode
-
-       [--manager-address <addr>] UNIX domain socket address
-                                  only available in server and manager mode
-
-       [--executable <path>]      path to the executable of ss-server
-                                  only available in manager mode
-
-       [-v]                       verbose mode
-
-notes:
-
-    ss-redir provides a transparent proxy function and only works on the
-    Linux platform with iptables.
+```bash
+$ docker run -d -e METHOD=aes-256-cfb -e PASSWORD=9MLSpPmNt -p 8388:8388 --restart always shadowsocks-libev
+$ docker ps
 ```
+
+> :warning: Click [here][6] to generate a strong password to protect your server.
+
+## Use docker-compose to manage (optional)
+
+It is very handy to use [docker-compose][7] to manage docker containers.
+You can download the binary at <https://github.com/docker/compose/releases>.
+
+This is a sample `docker-compose.yml` file.
+
+```yaml
+shadowsocks:
+  image: shadowsocks-libev
+  ports:
+    - "8388:8388"
+  environment:
+    - METHOD=aes-256-cfb
+    - PASSWORD=9MLSpPmNt
+  restart: always
+```
+
+It is highly recommended that you setup a directory tree to make things easy to manage.
+
+```bash
+$ mkdir -p ~/fig/shadowsocks/
+$ cd ~/fig/shadowsocks/
+$ curl -sSLO https://github.com/shadowsocks/shadowsocks-libev/raw/master/docker/alpine/docker-compose.yml
+$ docker-compose up -d
+$ docker-compose ps
+```
+
+## Finish
+
+At last, download shadowsocks client [here][8].
+Don't forget to share internet with your friends.
+
+```yaml
+{
+    "server": "your-vps-ip",
+    "server_port": 8388,
+    "local_address": "0.0.0.0",
+    "local_port": 1080,
+    "password": "9MLSpPmNt",
+    "timeout": 600,
+    "method": "aes-256-cfb"
+}
+```
+
+[1]: https://github.com/shadowsocks/shadowsocks-libev
+[2]: https://shadowsocks.org/en/index.html
+[3]: https://github.com/docker/docker
+[4]: https://hub.docker.com/r/vimagick/shadowsocks-libev/
+[5]: https://badge.imagelayers.io/vimagick/shadowsocks-libev:latest.svg
+[6]: https://duckduckgo.com/?q=password+12&t=ffsb&ia=answer
+[7]: https://github.com/docker/compose
+[8]: https://shadowsocks.org/en/download/clients.html
