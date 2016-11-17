@@ -2,8 +2,8 @@
 # Dockerfile for shadowsocks-libev
 #
 
-FROM alpine
-MAINTAINER kev <noreply@datageek.info>
+FROM alpine:3.4
+MAINTAINER ChasonTang <chasontang@gmail.com>
 
 ARG SS_VER=2.5.6
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
