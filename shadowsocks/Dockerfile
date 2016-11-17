@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
-ENV SHADOWSOCKS_VERSION 2.4.7
+ENV SHADOWSOCKS_VERSION 2.5.6
 
 RUN apk add --no-cache --virtual .build-deps \
         gcc \
