@@ -2,7 +2,7 @@ FROM swiftdocker/swift:3.0.1
 MAINTAINER ChasonTang <chasontang@gmail.com>
 
 RUN apt-get update \
-    && apt-get install -y uuid-dev \ 
+    && apt-get install -y uuid-dev libcurl4-openssl-dev \ 
     && git clone https://github.com/PerfectlySoft/PerfectTemplate /usr/src/PerfectTemplate \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
