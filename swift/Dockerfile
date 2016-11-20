@@ -20,7 +20,7 @@ RUN SWIFT_ARCHIVE_NAME=$SWIFT_VERSION-$SWIFT_PLATFORM && \
     SWIFT_URL=https://swift.org/builds/$SWIFT_BRANCH/$(echo "$SWIFT_PLATFORM" | tr -d .)/$SWIFT_VERSION/$SWIFT_ARCHIVE_NAME.tar.gz && \
     wget $SWIFT_URL && \
     wget $SWIFT_URL.sig && \
-    gpg --verify $SWIFT_ARCHIVE_NAME.tar.gz.sig \
+    gpg --verify $SWIFT_ARCHIVE_NAME.tar.gz.sig && \
     tar -xvzf $SWIFT_ARCHIVE_NAME.tar.gz && \
     # rm -rf $SWIFT_ARCHIVE_NAME* /tmp/* /var/tmp/*
 
