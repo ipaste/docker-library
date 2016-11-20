@@ -25,7 +25,7 @@ RUN SWIFT_ARCHIVE_NAME=$SWIFT_VERSION-$SWIFT_PLATFORM && \
     # rm -rf $SWIFT_ARCHIVE_NAME* /tmp/* /var/tmp/*
 
 # Set Swift Path
-# ENV PATH /usr/bin:$PATH
+ENV PATH /usr/bin:$PATH
 
 # Print Installed Swift Version
 # RUN swift --version
