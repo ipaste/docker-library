@@ -7,7 +7,7 @@ ENV SWIFT_PLATFORM ubuntu16.04
 
 # Install related packages and set LLVM 3.6 as the compiler
 RUN apt-get update && \
-    apt-get install -y make clang libicu-dev pkg-config libssl-dev libsasl2-dev libcurl4-openssl-dev uuid-dev git curl wget unzip && \
+    apt-get install -y wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -28,4 +28,4 @@ RUN SWIFT_ARCHIVE_NAME=$SWIFT_VERSION-$SWIFT_PLATFORM && \
 ENV PATH /usr/bin:$PATH
 
 # Print Installed Swift Version
-RUN swift --version
+# RUN swift --version
