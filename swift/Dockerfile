@@ -21,11 +21,11 @@ RUN SWIFT_ARCHIVE_NAME=$SWIFT_VERSION-$SWIFT_PLATFORM && \
     wget $SWIFT_URL && \
     wget $SWIFT_URL.sig && \
     gpg --verify $SWIFT_ARCHIVE_NAME.tar.gz.sig && \
-    tar -xvzf $SWIFT_ARCHIVE_NAME.tar.gz --directory / --strip-components=1 && \
-    rm -rf $SWIFT_ARCHIVE_NAME* /tmp/* /var/tmp/*
+    # tar -xvzf $SWIFT_ARCHIVE_NAME.tar.gz --directory / --strip-components=1 && \
+    # rm -rf $SWIFT_ARCHIVE_NAME* /tmp/* /var/tmp/*
 
 # Set Swift Path
-ENV PATH /usr/bin:$PATH
+# ENV PATH /usr/bin:$PATH
 
 # Print Installed Swift Version
 # RUN swift --version
