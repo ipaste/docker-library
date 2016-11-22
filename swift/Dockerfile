@@ -15,17 +15,14 @@ RUN apt-get update && \
 RUN wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import - && \
     gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys Swift
 
-# Install Swift Ubuntu 14.04 Snapshot
+# Install Swift Ubuntu 16.04
 RUN SWIFT_ARCHIVE_NAME=$SWIFT_VERSION-$SWIFT_PLATFORM && \
     SWIFT_URL=https://swift.org/builds/$SWIFT_BRANCH/$(echo "$SWIFT_PLATFORM" | tr -d .)/$SWIFT_VERSION/$SWIFT_ARCHIVE_NAME.tar.gz && \
     wget $SWIFT_URL && \
     wget $SWIFT_URL.sig && \
     gpg --verify $SWIFT_ARCHIVE_NAME.tar.gz.sig && \
-    tar -xvzf $SWIFT_ARCHIVE_NAME.tar.gz
-    # rm -rf $SWIFT_ARCHIVE_NAME* /tmp/* /var/tmp/*
-
-# Set Swift Path
-ENV PATH /usr/bin:$PATH
+    tar -xvzf $SWIFT_ARCHIVE_NAME.tar.gz --directory / --strip-components=1 && \
+    rm -rf $SWIFT_ARCHIVE_NAME* /tmp/* /var/tmp/*
 
 # Print Installed Swift Version
-# RUN swift --version
+RUN swift --version
