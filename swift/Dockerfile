@@ -7,7 +7,7 @@ ENV SWIFT_PLATFORM ubuntu16.04
 
 # Install related packages and set LLVM 3.6 as the compiler
 RUN apt-get update && \
-    apt-get install -y wget && \
+    apt-get install -y wget libedit2 libicu55 libxml2 libcurl3 clang git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
