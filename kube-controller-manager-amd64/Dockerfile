@@ -1,2 +1,2 @@
-FROM gcr.io/google_containers/kube-controller-manager-amd64:v1.6.4
-MAINTAINER ChasonTang <chasontang@gmail.com>
+FROM k8s.gcr.io/kube-controller-manager-amd64:v1.10.1
+MAINTAINER Vinny Wang <szwby@hotmail.com>
